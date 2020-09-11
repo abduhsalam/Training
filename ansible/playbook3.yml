@@ -1,0 +1,14 @@
+- hosts: server
+  tasks:
+  - name: copy file ke ubuntu tmp
+    copy: 
+     src: index.html
+     dest: /tmp
+    when:
+     - ansible_distribution == "Ubuntu"
+  - name: copy file ke centos opt
+    copy:
+     src: index.html
+     dest: /opt
+    when:
+     - ansible_distribution == "CentOS"

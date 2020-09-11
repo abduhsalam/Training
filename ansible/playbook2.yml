@@ -1,0 +1,14 @@
+- hosts: server
+  tasks:
+   - name: uninstall webserver
+     apt:
+      name: nginx
+      state: absent 
+     when:
+      - ansible_distribution == "Ubuntu"
+   - name: uninstal webserver centos
+     yum:
+      name: httpd
+      state: absent
+     when:
+      - ansible_distribution == "CentOS"

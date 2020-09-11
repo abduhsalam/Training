@@ -1,0 +1,20 @@
+- hosts: centos
+  tasks:
+   - name: install httpd centos
+     yum:
+      name: httpd
+      state: present
+   - name: httpd start
+     systemd:
+      name: httpd
+      state: started
+   - name: allow firewall
+     firewalld:
+      port: 80/tcp
+      state: enabled
+      immediate: yes
+      permanent: yes
+   - name: copy file index
+     copy:
+      src: index.html
+      dest: /var/www/html
